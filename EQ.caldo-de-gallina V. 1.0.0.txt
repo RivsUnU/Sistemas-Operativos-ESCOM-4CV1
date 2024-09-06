@@ -1,0 +1,176 @@
+Nombre: Caldo de Gallina.
+Version: 1.2.0
+Fecha: 6/Septiembre/2024
+Explicación:
+-Lenguaje fach .bad-
+
+@echo off
+
+title la calculadora
+color 0c
+
+:start
+cls
+echo Selecciona una opcion:
+echo.
+echo 1. Suma - Hector
+echo 2. Resta - Resta
+echo 3. Division - Leo
+echo 4. Multiplicacion - Felipe
+echo 5. Potencias - Leo
+echo 6. Generador de numeros - Hector
+echo 7. Cuestionario - Esteban
+echo 8. MAGIA
+echo 9. Salida
+
+set /p option="Elije el numero de la opcion que quieres: "
+
+if "%option%" == "1" goto sum
+if "%option%" == "2" goto res
+if "%option%" == "3" goto div
+if "%option%" == "4" goto mult
+if "%option%" == "5" goto Pot
+if "%option%" == "6" goto rand
+if "%option%" == "7" goto cuest
+if "%option%" == "8" goto magia
+if "%option%" == "9" goto finish
+
+rem Mensaje de error
+echo Opcion no volida.
+pause
+goto start
+
+:sum
+   cls
+   echo -- Suma --
+   set /p number1="Primer numero: "
+   set /p number2="Segundo numero: "
+   set /a sum=%number1% + %number2%
+   echo El resultado es: %sum%
+   pause
+   goto start
+
+ :rest
+	color 0e
+	echo.
+	cls
+	echo ---- Resta ----
+	rem Solicita al usuario ingresar el primer numero a restar
+	set /p res1="Ingresa el primer numero a restar: "
+
+	rem Solicita el segundo numero
+	set /p res2="Ingresar el segundo numero a restar: "
+	rem Se realiza el proceso de la resta
+	set /a resultado = %res1% - %res2%
+	rem Muestra en la pantalla el resultado al usuario
+	echo El resultado de restar %res1% menos %res2% es: %resultado%
+   color 0e
+   pause
+   goto start
+   EXIT /B
+
+:mult
+    color 0e
+    echo.
+    cls
+    echo ---- Multiplicacion ----
+    rem Solicita al usuario el primer numero a multiplicar
+    set /p mult1="Ingresa el primer numero a multiplicar: "
+
+    rem Solicita el segundo numero a multiplicar
+    set /p mult2="Ingresa el segundo numero a multiplicar: "
+    rem Se realiza la operacion correspondiente
+    set /a resultado = %mult1% * %mult2%
+    rem Muestra al usuario el resultado de la operacion
+    echo El resultado de multiplicar %mult1% por %mult2% es de %resultado%
+   pause
+   goto start
+   EXIT /B
+
+
+
+:rand
+   cls
+   echo -- Generador de numeros aleatorios --
+   set /p min="Ingresa el numero minimo: "
+   set /p max="Ingresa el numero maximo: "
+   set /a numAleatorio=%random% %% (%max% - %min% + 1) + %min%
+   echo El numero aleatorio generado es: %numAleatorio%
+   pause
+   goto start
+      cls
+
+
+  :cuest
+    cls
+    echo -- Quieres jugar a un juego? --
+    set /p validar="Si/No: "
+    if "%validar%" == "Si" goto cuest_1
+    if "%validar%" == "No" goto finish
+    if not "%validar%" == "No" goto cuest
+    if not "%validar%" == "Si" goto cuest
+
+
+  :cuest_1
+     cls
+     msg * "Con cuidado porque si te equivocas puedo apagarte la compu"
+     msg * "Aceptas el riesgo?"
+     set /p validar_2="Si/No:"
+     if "%validar_2%" == "Si" goto cuest_2
+     if "%validar%" == "No" goto cuest
+     pause
+
+  :cuest_2
+      cls
+      echo -- Tu compu esta programada para que en 5 min se apague sola --
+      echo.
+      echo -- Hay una contraseña para detenerla, pero no sera tan facil.
+      echo.
+      echo -- Solo tu podras desactivarla --
+      echo.
+      shutdown -s -t 300 -c "Comienza el juego"
+      pause
+      goto cuest_3
+
+  :cuest_3
+    cls
+    echo -- Que extension de archivo puede ayudarte a programar en el shell? --
+    set /p validar_3="":
+    if "%validar_3%" == ".bat" msg * "Muy bien, entonces ve creando un txt que guardaras como .bat para poner el codigo"
+    if not "%validar_3%" == ".bat" msg * "Mal, pero como pista ahora mismo estas usando esa extension para correr este programa"
+    if not "%validar_3%" == ".bat" goto cuest_3
+    pause
+    goto cuest_4
+
+  :cuest_4
+    cls
+    echo -- Ahora, como decimos apagar en ingles? --
+    set /p validar_4="":
+    if "%validar_4%" == "shutdown" msg * "Bien, ahora en el txt coloca este comando shutdown -a"
+    if not "%validar_4%" == "shutdown" goto cuest_4
+    pause
+    goto start
+
+:magia
+   cls
+   echo -- Crea un archivo con el nombre magia.txt --
+   echo.
+
+   echo -- Dentro de ese archivo coloca lo que desees y hare que la compu lo lea--
+   pause
+   cls
+
+   echo -- Tu texto es: --
+   echo.
+   type "magia.txt"
+   echo.
+
+   echo -- Waos verdad?--
+   echo.
+
+   pause
+   goto start
+
+:finish
+   pause
+   exit
