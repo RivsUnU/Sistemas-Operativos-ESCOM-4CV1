@@ -1,3 +1,6 @@
+ // Codigo modificado por el equipo Caldo de Gallina - Agregando Semaforos, Mutex, Hilos, Tuberias. Swap, Algoritmos de planificacion, Memoria.
+
+
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
